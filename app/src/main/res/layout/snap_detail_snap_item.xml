@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.circularreveal.cardview.CircularRevealCardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/commented_snap_image_frame"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="@dimen/app_default_padding">
+
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+
+        <ImageView
+            android:id="@+id/commented_snap_image"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:adjustViewBounds="true"
+            android:contentDescription="@string/commented_snap_image_content_description"
+            android:src="@drawable/img_bowling" />
+
+        <androidx.appcompat.widget.SwitchCompat
+            android:id="@+id/snap_detail_toggle_visibility_action"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignTop="@+id/commented_snap_image"
+            android:layout_alignEnd="@+id/commented_snap_image"
+            android:layout_alignRight="@+id/commented_snap_image"
+            android:paddingStart="@dimen/app_default_padding"
+            android:paddingTop="@dimen/app_default_padding"
+            android:paddingEnd="@dimen/app_default_padding"
+            android:paddingRight="@dimen/app_default_padding" />
+
+
+    </RelativeLayout>
+
+
+</com.google.android.material.circularreveal.cardview.CircularRevealCardView>
+

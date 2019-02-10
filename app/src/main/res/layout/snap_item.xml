@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="utf-8"?><!--
+  Copyright 2016 Google Inc.
+
+  Licensed under the Apache License, Version 2.0 (the "License");
+  you may not use this file except in compliance with the License.
+  You may obtain a copy of the License at
+
+      http://www.apache.org/licenses/LICENSE-2.0
+
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+  -->
+<com.google.android.material.circularreveal.cardview.CircularRevealCardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_margin="@dimen/app_default_margin_min">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/snap_image"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:adjustViewBounds="true"
+            android:contentDescription="@string/snap_image_content_description"
+            android:src="@drawable/img_golf" />
+
+        <ImageView
+            android:id="@+id/snap_report_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignTop="@+id/snap_image"
+            android:layout_alignEnd="@+id/snap_image"
+            android:layout_alignRight="@+id/snap_image"
+            android:clickable="true"
+            android:contentDescription="@string/report_this_snap_button_text"
+            android:focusable="true"
+            android:paddingTop="@dimen/app_default_padding"
+            android:paddingEnd="@dimen/app_default_padding"
+            android:paddingRight="@dimen/app_default_padding"
+            android:paddingStart="@dimen/app_default_padding"
+            android:src="@drawable/action_report" />
+
+        <TextView
+            android:id="@+id/snap_info"
+            style="@style/TextAppearance.AppCompat.Headline"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/snap_image"
+            android:padding="8dp"
+            android:text="@string/snap_info_sample"
+            android:textColor="@android:color/white"
+            android:textStyle="bold"
+            android:theme="@style/ThemeOverlay.AppCompat.Dark"
+            app:fontFamily="@font/rocko" />
+
+        <LinearLayout
+            android:id="@+id/snap_stats"
+            style="@style/TextAppearance.AppCompat.Subhead"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/snap_image"
+            android:orientation="horizontal"
+            android:padding="8dp"
+            android:textColor="?android:textColorSecondary">
+
+            <Button
+                android:id="@+id/snap_action_comment"
+                style="?android:attr/borderlessButtonStyle"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                app:fontFamily="@font/rocko"
+                android:drawableTop="@drawable/action_comment"
+                android:text="@string/snap_action_comment_info_sample" />
+
+            <Button
+                android:id="@+id/snap_action_love"
+                style="?android:attr/borderlessButtonStyle"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:drawableTop="@drawable/action_love"
+                app:fontFamily="@font/rocko"
+                android:text="@string/snap_action_comment_info_sample" />
+
+            <Button
+                android:id="@+id/snap_action_like"
+                style="?android:attr/borderlessButtonStyle"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:drawableTop="@drawable/action_like"
+                app:fontFamily="@font/rocko"
+                android:text="@string/snap_action_comment_info_sample" />
+
+            <Button
+                android:id="@+id/snap_action_dislike"
+                style="?android:attr/borderlessButtonStyle"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:drawableTop="@drawable/action_dislike"
+                app:fontFamily="@font/rocko"
+                android:text="@string/snap_action_comment_info_sample" />
+
+
+        </LinearLayout>
+
+    </RelativeLayout>
+</com.google.android.material.circularreveal.cardview.CircularRevealCardView>

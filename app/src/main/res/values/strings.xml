@@ -1,0 +1,49 @@
+<resources>
+    <string name="app_name">Snap\'anonym</string>
+    <string name="app_title">Snap\'Anonym</string>
+    <string name="publish_a_snap">Publish a snap</string>
+    <string name="explore_snaps">explore snaps</string>
+    <string name="explore_button_label">Explore</string>
+    <string name="publish_button_label">Publish</string>
+    <string name="snap_info_sample">20 yard away</string>
+    <string name="snap_action_comment_info_sample">34k</string>
+    <string name="snap_image_content_description">The snap image content</string>
+    <string name="report_this_snap_button_text">Report this snap</string>
+    <string name="title_activity_snaps">Snaps</string>
+    <string name="item_clicked">Item clicked</string>
+    <string name="commentator_id_sample">zapynou Optimus prime</string>
+    <string name="comment_minified_sample">
+        Hey, i do appreciate your shirt,my mum offered me the same 3 years ago. Unfortunaltely, i lose it, and i hate myself for that. I looking to buy another one whatever the price, how can i reach you?
+        And if you want to sell can you at least telle you got it so that i can try to reach the store?
+    </string>
+    <string name="comment_minified_readmore_action_text">Dig ...</string>
+    <string name="commented_snap_image_content_description">The commented snap image content</string>
+
+    <string-array name="snaps_distance">
+        <item>20 Yard away</item>
+        <item>40 Yard away</item>
+        <item>10 Yard away</item>
+        <item>5 Yard away</item>
+        <item>5 Yard away</item>
+        <item>40 Yard away</item>
+        <item>25 Yard away</item>
+        <item>85 Yard away</item>
+        <item>56 Yard away</item>
+        <item>6 Yard away</item>
+    </string-array>
+
+    <array name="snaps_images">
+        <item>@drawable/img_action_art_black</item>
+        <item>@drawable/img_adorable_beautiful_cute</item>
+        <item>@drawable/img_affection_bike_child</item>
+        <item>@drawable/img_antique_desk_device</item>
+        <item>@drawable/img_blur_bottle_dawn</item>
+        <item>@drawable/img_activity_adolescent_adult</item>
+        <item>@drawable/img_barefoot_beach_blur</item>
+        <item>@drawable/img_black_background_costume_dark</item>
+        <item>@drawable/img_activity_adults_athletes</item>
+        <item>@drawable/img_automobile_camaro_car</item>
+    </array>
+    <string name="title_activity_snap_details">Snap Details</string>
+
+</resources>

@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/comment_commentator_pseudo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/commentator_id_sample"
+        android:layout_marginBottom="@dimen/app_default_margin_min"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/comment_minified_content"
+        android:text="@string/comment_minified_sample"
+        android:layout_width="match_parent"
+        android:maxLines="3"
+        android:layout_height="wrap_content" />
+
+    <TextView
+        android:id="@+id/comment_minified_readmore_action"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/comment_minified_readmore_action_text"
+        android:clickable="true"
+        android:focusable="true"
+        android:layout_margin="@dimen/app_default_margin_min"
+        android:textStyle="italic" />
+
+    <LinearLayout
+        android:id="@+id/comment_stats"
+        style="@style/TextAppearance.AppCompat.Subhead"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="@dimen/app_default_margin_min"
+        android:textColor="?android:textColorSecondary">
+
+        <Button
+            android:id="@+id/comment_action_comment"
+            style="?android:attr/borderlessButtonStyle"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:drawableTop="@drawable/action_comment"
+            android:text="@string/snap_action_comment_info_sample"
+            app:fontFamily="@font/rocko" />
+
+        <Button
+            android:id="@+id/comment_action_love"
+            style="?android:attr/borderlessButtonStyle"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:drawableTop="@drawable/action_love"
+            android:text="@string/snap_action_comment_info_sample"
+            app:fontFamily="@font/rocko" />
+
+        <Button
+            android:id="@+id/comment_action_like"
+            style="?android:attr/borderlessButtonStyle"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:drawableTop="@drawable/action_like"
+            android:text="@string/snap_action_comment_info_sample"
+            app:fontFamily="@font/rocko" />
+
+        <Button
+            android:id="@+id/comment_action_dislike"
+            style="?android:attr/borderlessButtonStyle"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:drawableTop="@drawable/action_dislike"
+            android:text="@string/snap_action_comment_info_sample"
+            app:fontFamily="@font/rocko" />
+
+
+    </LinearLayout>
+
+</LinearLayout>
