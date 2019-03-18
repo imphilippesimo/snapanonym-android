@@ -1,4 +1,4 @@
-package com.zerofiltre.snapanonym.data;
+package com.zerofiltre.snapanonym.model;
 
 public class Comment extends Data {
     private String commentatorPseudo;
@@ -18,6 +18,9 @@ public class Comment extends Data {
 
     public void setContent(String content) {
         this.content = content;
+    }
+
+    public Comment() {
     }
 
     public Comment(int id, String commentatorPseudo, String content) {

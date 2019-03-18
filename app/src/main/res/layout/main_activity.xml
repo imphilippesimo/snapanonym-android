@@ -6,7 +6,8 @@
     android:layout_height="match_parent"
     android:background="@drawable/bg_snap_anonym"
     android:fitsSystemWindows="true"
-    tools:context=".activity.MainActivity">
+    tools:context=".view.activity.MainActivity"
+    android:id="@+id/main_activity">
 
     <Button
         android:id="@+id/imageButton_explore_main"

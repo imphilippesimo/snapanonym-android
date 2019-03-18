@@ -1,16 +1,17 @@
-package com.zerofiltre.snapanonym.activity.Snap;
+package com.zerofiltre.snapanonym.view.activity.Snap;
 
 import android.content.Context;
-import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+
 import com.bumptech.glide.Glide;
 import com.zerofiltre.snapanonym.R;
-import com.zerofiltre.snapanonym.data.Snap;
+import com.zerofiltre.snapanonym.infrastructure.Network.AppUtils;
+import com.zerofiltre.snapanonym.model.Snap;
 
 import java.util.ArrayList;
 
@@ -19,7 +20,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 public class SnapsAdapter extends RecyclerView.Adapter<SnapsAdapter.ViewHolder> {
 
-    public static final String EXTRA_SNAP_IMAGE_ID = "com.zerofiltre.snapanonym.activity.Snap.extra.snap_id";
+    public static final String EXTRA_SNAP_IMAGE_ID = "com.zerofiltre.snapanonym.view.activity.Snap.extra.snap_id";
     //Member variables
     private ArrayList<Snap> mSnapsData;
     private Context mContext;
@@ -27,6 +28,10 @@ public class SnapsAdapter extends RecyclerView.Adapter<SnapsAdapter.ViewHolder> 
     SnapsAdapter(ArrayList<Snap> mSnapsData, Context mContext) {
         this.mSnapsData = mSnapsData;
         this.mContext = mContext;
+    }
+
+    public void setmSnapsData(ArrayList<Snap> mSnapsData) {
+        this.mSnapsData = mSnapsData;
     }
 
     @NonNull
@@ -40,15 +45,15 @@ public class SnapsAdapter extends RecyclerView.Adapter<SnapsAdapter.ViewHolder> 
         final Snap snap = mSnapsData.get(position);
         holder.bindTo(snap);
 
-        holder.mSnapImage.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(mContext, SnapDetailsActivity.class);
-                intent.putExtra(EXTRA_SNAP_IMAGE_ID,snap.getImageResource());
-                mContext.startActivity(intent);
-
-            }
-        });
+//        holder.mSnapImage.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                Intent intent = new Intent(mContext, SnapDetailsActivity.class);
+//                intent.putExtra(EXTRA_SNAP_IMAGE_ID, snap.getImageResource());
+//                mContext.startActivity(intent);
+//
+//            }
+//        });
 
     }
 
@@ -58,7 +63,7 @@ public class SnapsAdapter extends RecyclerView.Adapter<SnapsAdapter.ViewHolder> 
     }
 
 
-    class ViewHolder extends RecyclerView.ViewHolder  {
+    class ViewHolder extends RecyclerView.ViewHolder {
 
         ImageView mSnapImage;
         TextView mSnapInfo;
@@ -73,9 +78,13 @@ public class SnapsAdapter extends RecyclerView.Adapter<SnapsAdapter.ViewHolder> 
 
         void bindTo(Snap currentSnap) {
             //Populate the textviews with data
-            mSnapInfo.setText(currentSnap.getInfo());
-           //TODO USE GLIDE PLACEHOLDER AND FALLACK METHODS
-            Glide.with(mContext).load(currentSnap.getImageResource()).into(mSnapImage);
+            StringBuilder builder = new StringBuilder();
+            builder.append(String.valueOf(currentSnap.getDistance())).append(" ").append(mContext.getString(R.string.distance_info_suffix));
+
+            mSnapInfo.setText(builder.toString());
+            //TODO USE GLIDE PLACEHOLDER AND FALLACK METHODS
+            Glide.with(mContext).load(AppUtils.bytesFromStringContent(currentSnap.getPicture().getContent())).into(mSnapImage);
+
 
         }
     }
