@@ -1,4 +1,4 @@
-package com.zerofiltre.snapanonym.activity.Snap;
+package com.zerofiltre.snapanonym.view.activity.Snap;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -9,7 +9,7 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.zerofiltre.snapanonym.R;
-import com.zerofiltre.snapanonym.data.Comment;
+import com.zerofiltre.snapanonym.model.Comment;
 
 import java.util.List;
 

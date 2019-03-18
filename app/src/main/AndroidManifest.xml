@@ -5,6 +5,15 @@
 
     <dist:module dist:instant="true" />
 
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.CHANGE_NETWORK_STATE" />
+    <!-- Needed only if your app targets Android 5.0 (API level 21) or higher. -->
+    <!--<uses-feature android:name="android.hardware.location.gps" />-->
+
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -13,25 +22,25 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".activity.Snap.SnapDetailsActivity"
+            android:name=".view.activity.Snap.SnapDetailsActivity"
             android:label="@string/title_activity_snap_details"
-            android:parentActivityName=".activity.Snap.SnapsActivity"
+            android:parentActivityName=".view.activity.Snap.SnapsActivity"
             android:theme="@style/AppTheme.NoActionBar">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.zerofiltre.snapanonym.activity.Snap.SnapsActivity" />
+                android:value=".view.activity.Snap.SnapsActivity" />
         </activity>
         <activity
-            android:name=".activity.Snap.SnapsActivity"
+            android:name=".view.activity.Snap.SnapsActivity"
             android:label="@string/title_activity_snaps"
-            android:parentActivityName=".activity.MainActivity"
+            android:parentActivityName=".view.activity.MainActivity"
             android:theme="@style/AppTheme.NoActionBar">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.zerofiltre.snapanonym.activity.MainActivity" />
+                android:value=".view.activity.MainActivity" />
         </activity>
         <activity
-            android:name=".activity.MainActivity"
+            android:name=".view.activity.MainActivity"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

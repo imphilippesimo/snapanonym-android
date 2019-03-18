@@ -1,8 +1,11 @@
-package com.zerofiltre.snapanonym.data;
+package com.zerofiltre.snapanonym.model;
 
 public class Data {
 
     private int id;
+
+    public Data() {
+    }
 
     public Data(int id) {
         this.id = id;

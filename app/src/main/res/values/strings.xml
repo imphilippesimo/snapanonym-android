@@ -45,5 +45,16 @@
         <item>@drawable/img_automobile_camaro_car</item>
     </array>
     <string name="title_activity_snap_details">Snap Details</string>
+    <string name="offline_tap_retry">Offline, tap to retry</string>
+    <string name="retry">Retry</string>
+    <string name="nogps_tap_retry">Your location is not activated, tap to activate</string>
+    <string name="action_enable_gps">enable</string>
+    <string name="location_settings_inadequate">Location settings are inadequate, and cannot be fixed here. Fix in Settings.</string>
+    <string name="pending_intent_unable_execute_request">PendingIntent unable to execute request.</string>
+    <string name="offline_get_back_online">Offline, get back online!</string>
+    <string name="backed_online_joy">Network available, the joy!</string>
+    <string name="enable_required_settings">Please enable GPS and network access </string>
+    <string name="dismiss">Dismiss</string>
+    <string name="distance_info_suffix">m away.</string>
 
 </resources>

@@ -1,14 +1,12 @@
-package com.zerofiltre.snapanonym.activity.Snap;
+package com.zerofiltre.snapanonym.view.activity.Snap;
 
 import android.os.Bundle;
 import android.view.View;
-import android.widget.ImageView;
 
-import com.bumptech.glide.Glide;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
 import com.zerofiltre.snapanonym.R;
-import com.zerofiltre.snapanonym.data.Comment;
+import com.zerofiltre.snapanonym.model.Comment;
 
 import java.util.ArrayList;
 import java.util.List;
