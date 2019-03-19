@@ -1,15 +1,19 @@
 package com.zerofiltre.snapanonym.view.activity;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.FileProvider;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.net.ConnectivityManager;
 import android.net.NetworkCapabilities;
 import android.net.NetworkRequest;
+import android.net.Uri;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.view.View;
 import android.widget.Toast;
 
@@ -22,8 +26,14 @@ import com.zerofiltre.snapanonym.infrastructure.Network.NetworkUtils;
 import com.zerofiltre.snapanonym.infrastructure.Network.Receiver.ConnectionReceiver;
 import com.zerofiltre.snapanonym.view.activity.Snap.SnapsActivity;
 
+import java.io.File;
+import java.io.IOException;
+
+import static com.zerofiltre.snapanonym.infrastructure.Network.AppUtils.createImageFile;
+
 public class MainActivity extends AppCompatActivity {
 
+    private static final int REQUEST_IMAGE_CAPTURE = 1;
     ConnectivityManager mConnectivityManager;
     private boolean isGPS;
     private boolean isConnected;
@@ -47,10 +57,10 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void showConnectionAvailable() {
                 //if (wasLost) {
-                    if (mSnackbar != null)
-                        mSnackbar.dismiss();
-                    mSnackbar = Snackbar.make(mCurrentView, R.string.backed_online_joy, Snackbar.LENGTH_SHORT);
-                    mSnackbar.show();
+                if (mSnackbar != null)
+                    mSnackbar.dismiss();
+                mSnackbar = Snackbar.make(mCurrentView, R.string.backed_online_joy, Snackbar.LENGTH_SHORT);
+                mSnackbar.show();
                 //}
 
             }
@@ -104,6 +114,34 @@ public class MainActivity extends AppCompatActivity {
         if (resultCode == Activity.RESULT_OK) {
             if (requestCode == AppUtils.GPS_REQUEST) {
                 isGPS = true;
+            }
+        }
+        if (requestCode == REQUEST_IMAGE_CAPTURE && resultCode == RESULT_OK) {
+            Bundle extras = data.getExtras();
+            Bitmap imageBitmap = (Bitmap) extras.get("data");
+            imageView.setImageBitmap(imageBitmap);
+        }
+    }
+
+    public void onPublishSnap(View view) {
+        Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+        // Ensure that there's a camera activity to handle the intent
+        if (takePictureIntent.resolveActivity(getPackageManager()) != null) {
+            // Create the File where the photo should go
+            File photoFile = null;
+            try {
+                photoFile = createImageFile();
+            } catch (IOException ex) {
+                // Error occurred while creating the File
+                ex.printStackTrace();
+            }
+            // Continue only if the File was successfully created
+            if (photoFile != null) {
+                Uri photoURI = FileProvider.getUriForFile(this,
+                        "com.example.android.fileprovider",
+                        photoFile);
+                takePictureIntent.putExtra(MediaStore.EXTRA_OUTPUT, photoURI);
+                startActivityForResult(takePictureIntent, REQUEST_IMAGE_CAPTURE);
             }
         }
     }

@@ -45,7 +45,6 @@
         <item>@drawable/img_automobile_camaro_car</item>
     </array>
     <string name="title_activity_snap_details">Snap Details</string>
-    <string name="offline_tap_retry">Offline, tap to retry</string>
     <string name="retry">Retry</string>
     <string name="nogps_tap_retry">Your location is not activated, tap to activate</string>
     <string name="action_enable_gps">enable</string>
