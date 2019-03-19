@@ -8,23 +8,22 @@ import android.content.pm.PackageManager;
 import android.location.Location;
 import android.os.Build;
 import android.os.Bundle;
-import android.provider.Settings;
 import android.view.View;
-import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.google.android.material.snackbar.Snackbar;
 import com.zerofiltre.snapanonym.R;
 import com.zerofiltre.snapanonym.infrastructure.Network.AppUtils;
-import com.zerofiltre.snapanonym.infrastructure.Network.GPSUtils;
 import com.zerofiltre.snapanonym.infrastructure.Network.Loader.SnapLoader;
 import com.zerofiltre.snapanonym.model.Snap;
-import com.zerofiltre.snapanonym.infrastructure.Network.NetworkUtils;
 import com.zerofiltre.snapanonym.view.activity.MainActivity;
+
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -36,10 +35,6 @@ import androidx.loader.content.Loader;
 import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
 
 import static com.zerofiltre.snapanonym.infrastructure.Network.AppUtils.PERMISSIONS_REQUEST_ACCESS_FINE_LOCATION;
 
