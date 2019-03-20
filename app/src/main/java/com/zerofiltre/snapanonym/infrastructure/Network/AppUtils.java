@@ -1,24 +1,26 @@
 package com.zerofiltre.snapanonym.infrastructure.Network;
 
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.os.Environment;
+import android.Manifest;
+import android.app.Activity;
+import android.content.Context;
+import android.content.pm.PackageManager;
+import android.os.Build;
 import android.util.Base64;
 
 import com.zerofiltre.snapanonym.model.SimpleLocation;
+import com.zerofiltre.snapanonym.view.activity.Snap.SnapsActivity;
 
-import java.io.File;
-import java.io.IOException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
-
-import static android.os.Environment.getExternalStoragePublicDirectory;
+import androidx.annotation.RequiresApi;
+import androidx.core.app.ActivityCompat;
 
 public class AppUtils {
 
     public static final int PERMISSIONS_REQUEST_ACCESS_FINE_LOCATION = 123;
     public static final int LOCATION_REQUEST = 1000;
     public static final int GPS_REQUEST = 1001;
+    public static final String CURRENT_LOCATION = "CURRENT_LOCATION";
+    public static final String FILE_PATH = "FILE_PATH";
+    public static final String CURRENT_PHOTO_PATH_EXTRA = "CURRENT_PHOTO_PATH_EXTRA";
 
     public static double distanceBetweenAsMeters(SimpleLocation origin, SimpleLocation destination, double el1, double el2) {
 
@@ -45,45 +47,21 @@ public class AppUtils {
 
     }
 
-    String currentPhotoPath;
-
-    public static File createImageFile() throws IOException {
-        // Create an image file name
-        String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
-        String imageFileName = "JPEG_" + timeStamp + "_";
-        File storageDir = getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES);
-        File image = File.createTempFile(
-                imageFileName,  /* prefix */
-                ".jpg",         /* suffix */
-                storageDir      /* directory */
-        );
-
-        // Save a file: path for use with ACTION_VIEW intents
-        //image.getAbsolutePath();
-        return image;
+    @RequiresApi(api = Build.VERSION_CODES.M)
+    public static boolean hasPermissions(Context context, String[] permissions) {
+        for (int i = 0; i < permissions.length; i++) {
+            String permission = permissions[i];
+            if (context.checkSelfPermission(permission) != PackageManager.PERMISSION_GRANTED)
+                return false;
+        }
+        return true;
     }
 
-    private void setPic() {
-        // Get the dimensions of the View
-        int targetW = imageView.getWidth();
-        int targetH = imageView.getHeight();
 
-        // Get the dimensions of the bitmap
-        BitmapFactory.Options bmOptions = new BitmapFactory.Options();
-        bmOptions.inJustDecodeBounds = true;
-        BitmapFactory.decodeFile(currentPhotoPath, boptions);
-        int photoW = bmOptions.outWidth;
-        int photoH = bmOptions.outHeight;
+    public static void requestPermissions(Activity activity, String[] permissions, int permissionRequestCode) {
+        ActivityCompat.requestPermissions(activity,
+                permissions,
+                permissionRequestCode);
 
-        // Determine how much to scale down the image
-        int scaleFactor = Math.min(photoW/targetW, photoH/targetH);
-
-        // Decode the image file into a Bitmap sized to fill the View
-        bmOptions.inJustDecodeBounds = false;
-        bmOptions.inSampleSize = scaleFactor;
-        bmOptions.inPurgeable = true;
-
-        Bitmap bitmap = BitmapFactory.decodeFile(currentPhotoPath, boptions);
-        imageView.setImageBitmap(bitmap);
     }
 }

@@ -55,5 +55,12 @@
     <string name="enable_required_settings">Please enable GPS and network access </string>
     <string name="dismiss">Dismiss</string>
     <string name="distance_info_suffix">m away.</string>
+    <string name="image_preview">Image preview</string>
+
+    <string name="title_activity_snap_publisher">Review and publish</string>
+    <string name="dummy_button">Dummy Button</string>
+    <string name="dummy_content">DUMMY\nCONTENT</string>
+    <string name="what_is_this_picture_hint">What is this picture ...</string>
+    <string name="image_background">Image background</string>
 
 </resources>

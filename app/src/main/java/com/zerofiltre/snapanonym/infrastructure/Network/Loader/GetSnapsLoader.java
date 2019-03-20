@@ -15,12 +15,12 @@ import androidx.annotation.Nullable;
 import androidx.loader.content.AsyncTaskLoader;
 
 
-public class SnapLoader extends AsyncTaskLoader<List<Snap>> {
+public class GetSnapsLoader extends AsyncTaskLoader<List<Snap>> {
 
     private Double mScope;
     private Location mCurrentLocation;
 
-    public SnapLoader(@NonNull Context context, Location currentLocation, Double mScope) {
+    public GetSnapsLoader(@NonNull Context context, Location currentLocation, Double mScope) {
         super(context);
         this.mScope = mScope;
         this.mCurrentLocation = currentLocation;
