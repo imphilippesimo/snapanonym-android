@@ -17,7 +17,7 @@ import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.zerofiltre.snapanonym.R;
 import com.zerofiltre.snapanonym.infrastructure.Network.AppUtils;
-import com.zerofiltre.snapanonym.infrastructure.Network.Loader.SnapLoader;
+import com.zerofiltre.snapanonym.infrastructure.Network.Loader.GetSnapsLoader;
 import com.zerofiltre.snapanonym.model.Snap;
 import com.zerofiltre.snapanonym.view.activity.MainActivity;
 
@@ -134,7 +134,7 @@ public class SnapsActivity extends AppCompatActivity implements LoaderManager.Lo
     @Override
     public Loader<List<Snap>> onCreateLoader(int id, @Nullable Bundle bundle) {
 
-        return new SnapLoader(this, mCurrentLocation, distance);
+        return new GetSnapsLoader(this, mCurrentLocation, distance);
     }
 
     @Override
@@ -158,9 +158,8 @@ public class SnapsActivity extends AppCompatActivity implements LoaderManager.Lo
 
         spinner.setVisibility(View.VISIBLE);
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-            if (checkSelfPermission(
-                    Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED
-                    && checkSelfPermission(Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+            String[] permissions = {Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION};
+            if (!AppUtils.hasPermissions(this, permissions)) {
 
                 // Permission is not granted
                 // Should we show an explanation?
@@ -169,12 +168,8 @@ public class SnapsActivity extends AppCompatActivity implements LoaderManager.Lo
                     // this thread waiting for the user's response! After the user
                     // sees the explanation, try again to request the permission.
                 } else {
+                    AppUtils.requestPermissions(this,permissions,PERMISSIONS_REQUEST_ACCESS_FINE_LOCATION);
                     // No explanation needed; request the permission
-                    ActivityCompat.requestPermissions(this,
-                            new String[]{Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION},
-                            PERMISSIONS_REQUEST_ACCESS_FINE_LOCATION);
-
-
                 }
             } else {
                 //Permission already granted , get the current location and loadSnaps

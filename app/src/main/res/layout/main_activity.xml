@@ -2,12 +2,21 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main_activity"
     android:layout_width="match_parent"
+
     android:layout_height="match_parent"
-    android:background="@drawable/bg_snap_anonym"
-    android:fitsSystemWindows="true"
-    tools:context=".view.activity.MainActivity"
-    android:id="@+id/main_activity">
+    android:animateLayoutChanges="true"
+    tools:context=".view.activity.MainActivity">
+
+    <ImageView
+        android:id="@+id/main_bg_image"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:adjustViewBounds="true"
+        android:background="@drawable/bg_snap_anonym"
+        android:contentDescription="@string/image_background"
+        android:fitsSystemWindows="true" />
 
     <Button
         android:id="@+id/imageButton_explore_main"
@@ -20,7 +29,9 @@
         android:layout_marginBottom="16dp"
         android:background="@drawable/button_background"
         android:contentDescription="@string/explore_snaps"
+        android:drawableStart="@drawable/ic_explore"
         android:drawableLeft="@drawable/ic_explore"
+        android:onClick="onExploreSnaps"
         android:padding="8dp"
         android:text="@string/explore_button_label"
         android:textAppearance="@style/TextAppearance.AppCompat.Widget.Switch"
@@ -30,13 +41,10 @@
         app:layout_constraintBottom_toTopOf="@+id/imageButton_publish_main"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        android:drawableStart="@drawable/ic_explore"
-        android:onClick="onExploreSnaps"/>
+        app:layout_constraintStart_toStartOf="parent" />
 
     <Button
         android:id="@+id/imageButton_publish_main"
-        android:onClick="onPublishSnap"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
@@ -46,17 +54,18 @@
         android:layout_marginBottom="256dp"
         android:background="@drawable/button_background"
         android:contentDescription="@string/publish_a_snap"
+        android:drawableStart="@drawable/ic_share"
         android:drawableLeft="@drawable/ic_share"
+        android:onClick="onPublishSnap"
         android:padding="8dp"
         android:text="@string/publish_button_label"
-        app:fontFamily="@font/rocko"
         android:textColor="@android:color/white"
         android:textSize="30sp"
+        app:fontFamily="@font/rocko"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="parent"
-        android:drawableStart="@drawable/ic_share" />
+        app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
         android:id="@+id/textView_app_title"
@@ -67,12 +76,12 @@
         android:layout_marginTop="24dp"
         android:layout_marginEnd="8dp"
         android:layout_marginRight="8dp"
-        app:fontFamily="@font/alissya"
         android:gravity="center"
         android:text="@string/app_title"
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
         android:textColor="@android:color/white"
         android:textSize="70sp"
+        app:fontFamily="@font/alissya"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
