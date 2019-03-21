@@ -34,6 +34,7 @@ public class NetworkUtils {
 
     // Base URL for snaps API.
     private static final String SNAP_BASE_URL = "http://ec2-54-174-75-230.compute-1.amazonaws.com:9000/snaps";
+    //private static final String SNAP_BASE_URL = "http://192.168.43.246:9000/snaps";
     // Parameter for coordinate longitude.
     private static final String LONGITUDE = "longitude";
     // Parameter for coordinate latitude.
@@ -87,6 +88,7 @@ public class NetworkUtils {
             snaps = mapper.readValue(inputStream, new TypeReference<List<Snap>>() {
             });
 
+
         } catch (MalformedURLException e) {
             e.printStackTrace();
         } catch (ProtocolException e) {
@@ -95,9 +97,18 @@ public class NetworkUtils {
             e.printStackTrace();
         } finally {
 
+//            if (inputStream != null) {
+//                try {
+//                    inputStream.close();
+//                } catch (IOException e) {
+//                    e.printStackTrace();
+//                }
+//            }
+
             if (urlConnection != null) {
                 urlConnection.disconnect();
             }
+
 
         }
 
@@ -148,13 +159,13 @@ public class NetworkUtils {
             this.charset = charset;
 
             // creates a unique boundary based on time stamp
-            boundary = "===" + System.currentTimeMillis() + "===";
+            boundary = "---" + System.currentTimeMillis() + "---";
             URL url = new URL(requestURL);
             httpConn = (HttpURLConnection) url.openConnection();
             httpConn.setUseCaches(false);
             httpConn.setDoOutput(true);    // indicates POST method
             httpConn.setDoInput(true);
-            httpConn.setRequestProperty("Content-Type",
+            httpConn.setRequestProperty("content-type",
                     "multipart/form-data; boundary=" + boundary);
             outputStream = httpConn.getOutputStream();
             writer = new PrintWriter(new OutputStreamWriter(outputStream, charset),
@@ -193,9 +204,11 @@ public class NetworkUtils {
                     "Content-Disposition: form-data; name=\"" + fieldName
                             + "\"; filename=\"" + fileName + "\"")
                     .append(LINE_FEED);
+            String s = URLConnection.guessContentTypeFromName(fileName);
+            Log.d(LOG_TAG, "addFilePart: " + s);
             writer.append(
                     "Content-Type: "
-                            + URLConnection.guessContentTypeFromName(fileName))
+                            + s)
                     .append(LINE_FEED);
             writer.append("Content-Transfer-Encoding: binary").append(LINE_FEED);
             writer.append(LINE_FEED);
@@ -236,7 +249,6 @@ public class NetworkUtils {
             writer.append(LINE_FEED).flush();
             writer.append("--" + boundary + "--").append(LINE_FEED);
             writer.close();
-            Log.i("Req sent", httpConn.toString());
 
             // checks server's status code first
             int status = httpConn.getResponseCode();

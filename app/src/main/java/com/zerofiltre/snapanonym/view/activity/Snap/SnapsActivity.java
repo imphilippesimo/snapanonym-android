@@ -45,7 +45,7 @@ public class SnapsActivity extends AppCompatActivity implements LoaderManager.Lo
     private ArrayList<Snap> mSnapsData;
     private SnapsAdapter mAdapter;
     private RelativeLayout spinner;
-    private static final double distance = 40;
+    private static final double distance = 500;
     private Location mCurrentLocation;
     private FusedLocationProviderClient mFusedLocationClient;
     private boolean isGPS;
