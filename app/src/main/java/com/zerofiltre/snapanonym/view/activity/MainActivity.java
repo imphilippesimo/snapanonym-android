@@ -127,12 +127,12 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void onExploreSnaps(View view) {
-        if (isGPS && isConnected) {
+        //if (isGPS && isConnected) {
             Intent intent = new Intent(this, SnapsActivity.class);
             startActivity(intent);
-        } else {
-            Toast.makeText(this, getString(R.string.enable_required_settings), Toast.LENGTH_SHORT).show();
-        }
+       // } else {
+           // Toast.makeText(this, getString(R.string.enable_required_settings), Toast.LENGTH_SHORT).show();
+       // }
 
 
     }

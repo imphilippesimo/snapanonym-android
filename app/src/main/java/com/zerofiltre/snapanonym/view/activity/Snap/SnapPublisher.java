@@ -205,8 +205,7 @@ public class SnapPublisher extends AppCompatActivity implements LoaderManager.Lo
     }
 
     public void onCancelPublish(View view) {
-        Intent intent = new Intent(this, MainActivity.class);
-        startActivity(intent);
+        goToMainActivity();
 
     }
 
@@ -246,13 +245,17 @@ public class SnapPublisher extends AppCompatActivity implements LoaderManager.Lo
                     publishSnap();
                 } else {
                     //Permission not granted, go back to the home page
-                    Intent intent = new Intent(this, MainActivity.class);
-                    startActivity(intent);
+                    goToMainActivity();
 
                 }
                 return;
             }
         }
+    }
+
+    private void goToMainActivity() {
+        Intent intent = new Intent(this, MainActivity.class);
+        startActivity(intent);
     }
 
 
@@ -284,6 +287,7 @@ public class SnapPublisher extends AppCompatActivity implements LoaderManager.Lo
     @Override
     public void onLoadFinished(@NonNull Loader loader, Object data) {
         mSpinner.setVisibility(View.GONE);
+        goToMainActivity();
 
     }
 
