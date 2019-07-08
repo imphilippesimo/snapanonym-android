@@ -35,17 +35,7 @@ public class GetSnapsLoader extends AsyncTaskLoader<List<Snap>> {
     @Nullable
     @Override
     public List<Snap> loadInBackground() {
-        List<Snap> snaps = NetworkUtils.getSnaps(mCurrentLocation, mScope);
-        for (Snap snap : snaps) {
-            double distanceBetweenAsMeters = AppUtils.distanceBetweenAsMeters(
-                    new SimpleLocation(mCurrentLocation.getLongitude(), mCurrentLocation.getLatitude()),
-                    snap.getPostedAt(),
-                    0,
-                    0);
-
-            snap.setDistance((int) distanceBetweenAsMeters);
-        }
-        return snaps;
+        return NetworkUtils.getSnaps(mCurrentLocation, mScope);
     }
 
 

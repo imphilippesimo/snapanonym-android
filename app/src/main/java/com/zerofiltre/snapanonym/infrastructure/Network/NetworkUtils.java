@@ -33,7 +33,7 @@ public class NetworkUtils {
     private static final String LOG_TAG = NetworkUtils.class.getSimpleName();
 
     // Base URL for snaps API.
-    private static final String SNAP_BASE_URL = "http://ec2-54-174-75-230.compute-1.amazonaws.com:9000/snaps";
+    private static final String SNAP_BASE_URL = "http://34.205.157.14:9010/public/snaps";
     //private static final String SNAP_BASE_URL = "http://192.168.43.246:9000/snaps";
     // Parameter for coordinate longitude.
     private static final String LONGITUDE = "longitude";

@@ -15,7 +15,6 @@ import android.os.Environment;
 import android.provider.MediaStore;
 import android.view.View;
 import android.widget.ImageView;
-import android.widget.Toast;
 
 import com.google.android.material.snackbar.Snackbar;
 import com.zerofiltre.snapanonym.R;
@@ -128,13 +127,24 @@ public class MainActivity extends AppCompatActivity {
 
     public void onExploreSnaps(View view) {
         //if (isGPS && isConnected) {
-            Intent intent = new Intent(this, SnapsActivity.class);
-            startActivity(intent);
-       // } else {
-           // Toast.makeText(this, getString(R.string.enable_required_settings), Toast.LENGTH_SHORT).show();
-       // }
+        Intent intent = new Intent(this, SnapsActivity.class);
+        startActivity(intent);
+        // } else {
+        // Toast.makeText(this, getString(R.string.enable_required_settings), Toast.LENGTH_SHORT).show();
+        // }
 
 
+    }
+
+    @Override
+    public void onBackPressed() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
+            finishAffinity();
+        } else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            finishAndRemoveTask();
+
+        }
+        super.onBackPressed();
     }
 
     @Override
