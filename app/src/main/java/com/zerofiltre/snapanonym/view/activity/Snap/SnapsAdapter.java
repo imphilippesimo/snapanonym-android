@@ -79,7 +79,7 @@ public class SnapsAdapter extends RecyclerView.Adapter<SnapsAdapter.ViewHolder> 
         void bindTo(Snap currentSnap) {
             //Populate the textviews with data
             StringBuilder builder = new StringBuilder();
-            builder.append(String.valueOf(currentSnap.getDistance())).append(" ").append(mContext.getString(R.string.distance_info_suffix));
+            builder.append(String.valueOf(currentSnap.getMilesAway())).append(" ").append(mContext.getString(R.string.distance_info_suffix));
 
             mSnapInfo.setText(builder.toString());
             //TODO USE GLIDE PLACEHOLDER AND FALLACK METHODS

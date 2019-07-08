@@ -9,7 +9,7 @@ public class Snap extends Data {
     private Date postedOn;
     private int reportsNumber;
     private boolean visible;
-    private int distance;
+    private double milesAway;
 
 
     public Picture getPicture() {
@@ -53,12 +53,12 @@ public class Snap extends Data {
     }
 
 
-    public int getDistance() {
-        return distance;
+    public int getMilesAway() {
+        return (int) (milesAway * 1609.34);
     }
 
-    public void setDistance(int distance) {
-        this.distance = distance;
+    public void setMilesAway(double milesAway) {
+        this.milesAway = milesAway;
     }
 }
 
