@@ -58,28 +58,28 @@ def pushToPlay() {
 
 }
 
-def notifyBuild(String buildStatus = 'STARTED') {
-    buildStatus = buildStatus ?: 'SUCCESSFUL'
-
-    def color = 'RED'
-    def colorCode = '#FF0000'
-    def subject = "${buildStatus}: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]'"
-    def summary = "${subject} (${env.BUILD_URL})"
-    def details = """<p>STARTED: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]':</p>
-    <p>Check console output at &QUOT;<a href='${env.BUILD_URL}'>${env.JOB_NAME} [${
-        env.BUILD_NUMBER
-    }]</a>&QUOT;</p>"""
-
-    if (buildStatus == 'STARTED') {
-        color = 'YELLOW'
-        colorCode = '#FFCC00'
-    } else if (buildStatus == 'SUCCESSFUL') {
-        color = 'GREEN'
-        colorCode = '#228B22'
-    } else {
-        color = 'RED'
-        colorCode = '#FF0000'
-    }
-
-    slackSend(color: colorCode, message: summary)
-}
+//def notifyBuild(String buildStatus = 'STARTED') {
+//    buildStatus = buildStatus ?: 'SUCCESSFUL'
+//
+//    def color = 'RED'
+//    def colorCode = '#FF0000'
+//    def subject = "${buildStatus}: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]'"
+//    def summary = "${subject} (${env.BUILD_URL})"
+//    def details = """<p>STARTED: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]':</p>
+//    <p>Check console output at &QUOT;<a href='${env.BUILD_URL}'>${env.JOB_NAME} [${
+//        env.BUILD_NUMBER
+//    }]</a>&QUOT;</p>"""
+//
+//    if (buildStatus == 'STARTED') {
+//        color = 'YELLOW'
+//        colorCode = '#FFCC00'
+//    } else if (buildStatus == 'SUCCESSFUL') {
+//        color = 'GREEN'
+//        colorCode = '#228B22'
+//    } else {
+//        color = 'RED'
+//        colorCode = '#FF0000'
+//    }
+//
+//    slackSend(color: colorCode, message: summary)
+//}
