@@ -17,12 +17,16 @@ node {
             checkout scm
         }
 
+        stage("Clean garbage") {
+            cleanGarbage()
+        }
+
         stage('Image Build') {
             imageBuild(CONTAINER_NAME, CONTAINER_TAG)
         }
 
         stage('Run application test') {
-            runTestInContainer(PROJECT)
+            runTestInContainer(CONTAINER_NAME)
         }
 
         stage('Push to Docker Registry') {
@@ -42,12 +46,14 @@ node {
             }
         }
 
-        stage("Clean garbage") {
-            cleanGarbage()
-        }
+//        stage("Clean garbage") {
+//            cleanGarbage()
+//        }
     } catch (e) {
         currentBuild.result = "FAILED"
         throw e
+    } finally {
+        cleanGarbage()
     }
 }
 
