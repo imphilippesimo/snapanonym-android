@@ -88,9 +88,11 @@ def cleanGarbage(containerName) {
     try {
         sh "docker image prune -f"
         sh "docker stop $containerName"
+
+    } catch (error) {
+    } finally {
         sh "docker container prune -f"
         sh "docker volume prune -f"
-    } catch (error) {
     }
 
 }
