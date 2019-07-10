@@ -3,7 +3,7 @@ node {
     //Utilizing a try block so as to make the code cleaner and send slack notification in case of any error
     try {
         //Call function to send a message to Slack
-        notifyBuild('STARTED')
+        //notifyBuild('STARTED')
         // Global variable declaration
         def project = 'snapanonym-android'
         def appName = 'Snap\'anonym'
