@@ -36,15 +36,15 @@ node {
             // This is the cool part where you deploy. Here, you can specify builds you want to deploy
             switch (env.BRANCH_NAME) {
                 case "master":
-                    withCredentials([usernamePassword(credentialsId: 'DockerhubCredentials', usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD')]) {
+                    //withCredentials([usernamePassword(credentialsId: 'DockerhubCredentials', usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD')]) {
                         pushToPlay()
-                    }
+                    //}
                     break
                 case "develop":
-                    sh("env >> .env")
-                    withCredentials([usernamePassword(credentialsId: 'DockerhubCredentials', usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD')]) {
+
+                    //withCredentials([usernamePassword(credentialsId: 'DockerhubCredentials', usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD')]) {
                         pushToPlay()
-                    }
+                    //}
 
                     break
             }
