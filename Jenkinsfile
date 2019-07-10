@@ -18,7 +18,7 @@ node {
         }
 
         stage("Clean garbage") {
-            cleanGarbage()
+            cleanGarbage(CONTAINER_NAME)
         }
 
         stage('Image Build') {
@@ -53,7 +53,7 @@ node {
         currentBuild.result = "FAILED"
         throw e
     } finally {
-        cleanGarbage()
+        cleanGarbage(CONTAINER_NAME)
     }
 }
 
@@ -84,7 +84,7 @@ def pushToPlay(containerName) {
 
 }
 
-def cleanGarbage() {
+def cleanGarbage(containerName) {
     try {
         sh "docker image prune -f"
         sh "docker stop $containerName"
