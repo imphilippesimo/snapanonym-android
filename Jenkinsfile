@@ -46,9 +46,10 @@ node {
     } catch (e) {
         currentBuild.result = "FAILED"
         throw e
-    } finally {
-        notifyBuild(currentBuild.result)
     }
+//    finally {
+//        notifyBuild(currentBuild.result)
+//    }
 }
 
 def pushToPlay() {
