@@ -8,6 +8,12 @@ node {
         def project = 'snapanonym-android'
         def appName = 'Snap\'anonym'
 
+        stage('Initialize') {
+            def dockerHome = tool 'myDocker'
+            //def mavenHome  = tool 'myMaven'
+            env.PATH = "${dockerHome}/bin:${env.PATH}"
+        }
+
         // Stage, is to tell the Jenkins that this is the new process/step that needs to be executed
         stage('Checkout') {
             // Pull the code from the repo
