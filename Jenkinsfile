@@ -1,16 +1,13 @@
-// Every jenkins file should start with either a Declarative or Scripted Pipeline entry point.
+def CONTAINER_NAME = "snapanonym-android"
+def CONTAINER_TAG = "latest"
+def DOCKER_HUB_USER = "imzerofiltre"
+def APP_NAME = 'Snap\'anonym'
+
 node {
-    //Utilizing a try block so as to make the code cleaner and send slack notification in case of any error
     try {
-        //Call function to send a message to Slack
-        //notifyBuild('STARTED')
-        // Global variable declaration
-        def project = 'snapanonym-android'
-        def appName = 'Snap\'anonym'
 
         stage('Initialize') {
             def dockerHome = tool 'myDocker'
-            //def mavenHome  = tool 'myMaven'
             env.PATH = "${dockerHome}/bin:${env.PATH}"
         }
 
@@ -20,50 +17,78 @@ node {
             checkout scm
         }
 
-        stage('Build Image') {
-            // Build our docker Image
-            sh("docker build -t ${project} .")
+        stage('Image Build') {
+            imageBuild(CONTAINER_NAME, CONTAINER_TAG)
         }
 
         stage('Run application test') {
-            // If you need environmental variables in your image. Why not load it attach it to the image, and delete it afterward
-            sh("env >> .env")
-            sh("docker run --env-file .env --rm ${project} ./gradlew test")
-            sh("rm -rf .env")
+            runTestInContainer(PROJECT)
         }
 
-        stage('Deploy application') {
-            // This is the cool part where you deploy. Here, you can specify builds you want to deploy
+        stage('Push to Docker Registry') {
+            withCredentials([usernamePassword(credentialsId: 'DockerhubCredentials', usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD')]) {
+                pushToImage(CONTAINER_NAME, CONTAINER_TAG, USERNAME, PASSWORD)
+            }
+        }
+
+        stage('Push app to the play store') {
             switch (env.BRANCH_NAME) {
                 case "master":
-                    //withCredentials([usernamePassword(credentialsId: 'DockerhubCredentials', usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD')]) {
-                        pushToPlay()
-                    //}
+                    pushToPlay()
                     break
                 case "develop":
-
-                    //withCredentials([usernamePassword(credentialsId: 'DockerhubCredentials', usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD')]) {
-                        pushToPlay()
-                    //}
-
+                    pushToPlay()
                     break
             }
+        }
+
+        stage("Clean garbage") {
+            cleanGarbage()
         }
     } catch (e) {
         currentBuild.result = "FAILED"
         throw e
     }
-//    finally {
-//        notifyBuild(currentBuild.result)
-//    }
 }
 
-def pushToPlay() {
+
+def imageBuild(containerName, tag) {
+    sh "docker build -t $containerName:$tag  -t $containerName --pull --no-cache ."
+    echo "Image build complete"
+}
+
+def runTestInContainer(containerName) {
+    // If you need environmental variables in your image. Why not load it attach it to the image, and delete it afterward
     sh("env >> .env")
-    sh("docker run --env-file .env --rm ${project} ./gradlew clean build assemble publishApkRelease")
+    sh("docker run --env-file .env --rm ${containerName} ./gradlew test")
+    sh("rm -rf .env")
+}
+
+def pushToImage(containerName, tag, dockerUser, dockerPassword) {
+    sh "docker login -u $dockerUser -p $dockerPassword"
+    sh "docker tag $containerName:$tag $dockerUser/$containerName:$tag"
+    sh "docker push $dockerUser/$containerName:$tag"
+    echo "Image push complete"
+}
+
+def pushToPlay(containerName) {
+    sh("env >> .env")
+    sh("docker run --env-file .env --rm ${containerName} ./gradlew clean build assemble publishApkRelease")
     sh("rm -rf .env")
 
 }
+
+def cleanGarbage() {
+    try {
+        sh "docker image prune -f"
+        sh "docker stop $containerName"
+        sh "docker container prune -f"
+        sh "docker volume prune -f"
+    } catch (error) {
+    }
+
+}
+
 
 //def notifyBuild(String buildStatus = 'STARTED') {
 //    buildStatus = buildStatus ?: 'SUCCESSFUL'
