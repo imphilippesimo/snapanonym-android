@@ -30,15 +30,9 @@ node {
         }
 
         stage('Push app to the play store') {
-            switch (env.BRANCH_NAME) {
-                case "master":
-                    pushToPlay()
-                    break
-                case "develop":
-                    pushToPlay()
-                    break
-            }
+            pushToPlay()
         }
+        
     } catch (e) {
         currentBuild.result = "FAILED"
         throw e
