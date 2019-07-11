@@ -17,6 +17,9 @@ out/
 .gradle/
 app/build/
 
+# Google service key file
+app/api-6321041036636787156-617186-2030f42a00bb.json
+
 # Local configuration file (sdk path, etc)
 local.properties
 
