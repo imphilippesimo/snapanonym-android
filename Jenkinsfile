@@ -17,9 +17,9 @@ node {
             checkout scm
         }
 
-        stage("Clean garbage") {
-            cleanGarbage(CONTAINER_NAME)
-        }
+//        stage("Clean garbage") {
+//            cleanGarbage(CONTAINER_NAME)
+//        }
 
         stage('Image Build') {
             imageBuild(CONTAINER_NAME, CONTAINER_TAG)
