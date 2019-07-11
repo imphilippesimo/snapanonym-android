@@ -25,6 +25,6 @@
 
   ADD ./ /application
 
-  COPY ~/api-6321041036636787156-617186-2030f42a00bb.json /application/app/
+  COPY /home/ec2-user/api-6321041036636787156-617186-2030f42a00bb.json /application/app/
 
   RUN chmod +x gradlew
