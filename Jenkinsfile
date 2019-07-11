@@ -79,14 +79,14 @@ def pushToImage(containerName, tag, dockerUser, dockerPassword) {
 
 def pushToPlay(containerName) {
     sh("env >> .env")
-    sh("docker run --env-file .env --rm ${containerName} ./gradlew clean build assemble publishApkRelease")
+    sh("docker run --privileged --env-file .env --rm ${containerName} ./gradlew clean build assemble publishApkRelease")
     sh("rm -rf .env")
 
 }
 
 def cleanGarbage(containerName) {
     try {
-        sh "docker image prune -f"
+        //sh "docker image prune -f"
         sh "docker stop $containerName"
 
     } catch (error) {
