@@ -30,9 +30,9 @@ node {
         }
 
         stage('Push app to the play store') {
-            pushToPlay()
+            pushToPlay(CONTAINER_NAME)
         }
-        
+
     } catch (e) {
         currentBuild.result = "FAILED"
         throw e
