@@ -9,7 +9,7 @@
   RUN mkdir "$ANDROID_HOME" .android \
   && cd "$ANDROID_HOME" \
   && curl -o sdk.zip $SDK_URL \
-  && unzip sdk.zip \
+  && unzip sdk.zip  \
   && rm sdk.zip \
   && yes | $ANDROID_HOME/tools/bin/sdkmanager --licenses
 
@@ -18,7 +18,11 @@
   "platforms;android-${ANDROID_VERSION}" \
   "platform-tools"
 
-  RUN chmod +x gradlew
+  VOLUME ["/usr/local/android-sdk"]
 
   RUN mkdir /application
   WORKDIR /application
+
+  ADD ./ /application
+
+  RUN chmod +x gradlew
