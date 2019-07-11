@@ -75,3 +75,5 @@
     WORKDIR /www
 
     ADD ./ /www
+
+    RUN chmod +x gradlew
