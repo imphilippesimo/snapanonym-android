@@ -18,5 +18,7 @@
   "platforms;android-${ANDROID_VERSION}" \
   "platform-tools"
 
+  RUN chmod +x gradlew
+
   RUN mkdir /application
   WORKDIR /application
