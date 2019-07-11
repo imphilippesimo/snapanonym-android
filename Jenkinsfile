@@ -86,7 +86,7 @@ def pushToPlay(containerName) {
 
 def cleanGarbage(containerName) {
     try {
-        //sh "docker image prune -f"
+        sh "docker image prune -f"
         sh "docker stop $containerName"
 
     } catch (error) {
