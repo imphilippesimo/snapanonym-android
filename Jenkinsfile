@@ -11,15 +11,9 @@ node {
             env.PATH = "${dockerHome}/bin:${env.PATH}"
         }
 
-        // Stage, is to tell the Jenkins that this is the new process/step that needs to be executed
         stage('Checkout') {
-            // Pull the code from the repo
             checkout scm
         }
-
-//        stage("Clean garbage") {
-//            cleanGarbage(CONTAINER_NAME)
-//        }
 
         stage('Image Build') {
             imageBuild(CONTAINER_NAME, CONTAINER_TAG)
@@ -45,10 +39,6 @@ node {
                     break
             }
         }
-
-//        stage("Clean garbage") {
-//            cleanGarbage()
-//        }
     } catch (e) {
         currentBuild.result = "FAILED"
         throw e
