@@ -19,7 +19,7 @@ android {
     }
 }
 play {
-    serviceAccountCredentials = file("api-6321041036636787156-617186-2030f42a00bb.json")
+    serviceAccountCredentials = file("~/keystore/key.json")
 }
 
 dependencies {
