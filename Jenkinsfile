@@ -48,12 +48,12 @@ def imageBuild(containerName, tag) {
     echo "Image build complete"
 }
 
-def runTestInContainer(containerName) {
-    // If you need environmental variables in your image. Why not load it attach it to the image, and delete it afterward
-    sh("env >> .env")
-    sh("docker run --env-file .env --rm ${containerName} ./gradlew test")
-    sh("rm -rf .env")
-}
+//def runTestInContainer(containerName) {
+//    // If you need environmental variables in your image. Why not load it attach it to the image, and delete it afterward
+//    sh("env >> .env")
+//    sh("docker run --env-file .env --rm ${containerName} ./gradlew test")
+//    sh("rm -rf .env")
+//}
 
 def pushToImage(containerName, tag, dockerUser, dockerPassword) {
     sh "docker login -u $dockerUser -p $dockerPassword"
