@@ -20,9 +20,9 @@ node {
             imageBuild(CONTAINER_NAME, CONTAINER_TAG)
         }
 
-        stage('Run application test') {
-            runTestInContainer(CONTAINER_NAME)
-        }
+//        stage('Run application test') {
+//            runTestInContainer(CONTAINER_NAME)
+//        }
 
         stage('Push to Docker Registry') {
             withCredentials([usernamePassword(credentialsId: 'DockerhubCredentials', usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD')]) {
