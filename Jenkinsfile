@@ -51,7 +51,7 @@ def imageBuild(containerName, tag) {
 def runTestInContainer(containerName) {
     // If you need environmental variables in your image. Why not load it attach it to the image, and delete it afterward
     sh("env >> .env")
-    sh("docker run -v /keystore:/keystore/ --env-file .env --rm ${containerName} ./gradlew test")
+    sh("docker run --env-file .env --rm ${containerName} ./gradlew test")
     sh("rm -rf .env")
 }
 
@@ -64,7 +64,7 @@ def pushToImage(containerName, tag, dockerUser, dockerPassword) {
 
 def pushToPlay(containerName) {
     sh("env >> .env")
-    sh("docker run -v -v keystore:/keystore/ --env-file .env --rm ${containerName} ./gradlew publishApkRelease")
+    sh("docker run -v keystore:/keystore/ --env-file .env --rm ${containerName} ./gradlew publishApkRelease")
     sh("rm -rf .env")
 
 }
