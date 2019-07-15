@@ -6,9 +6,10 @@ def APP_NAME = 'Snap\'anonym'
 node {
     try {
 
-        stage('Initialize') {
-            def dockerHome = tool 'myDocker'
-            env.PATH = "${dockerHome}/bin:${env.PATH}"
+        stage('Initialize'){
+            //def dockerHome = tool 'myDocker'
+            def mavenHome  = tool 'myMaven'
+            env.PATH = "${mavenHome}/bin:${env.PATH}"
         }
 
         stage('Checkout') {
@@ -50,7 +51,7 @@ def imageBuild(containerName, tag) {
 def runTestInContainer(containerName) {
     // If you need environmental variables in your image. Why not load it attach it to the image, and delete it afterward
     sh("env >> .env")
-    sh("docker run --env-file .env --rm ${containerName} ./gradlew test")
+    sh("docker run -v keystore:/keystore/ --env-file .env --rm ${containerName} ./gradlew test")
     sh("rm -rf .env")
 }
 
