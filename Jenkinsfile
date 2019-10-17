@@ -64,7 +64,7 @@ def pushToImage(containerName, tag, dockerUser, dockerPassword) {
 
 def pushToPlay(containerName) {
     sh("env >> .env")
-    sh("docker run -v keystore:/keystore/ --env-file .env --rm ${containerName} ./gradlew publishApkRelease")
+    sh("docker run -v ~/keystore:/keystore/ --env-file .env --rm ${containerName} ./gradlew publishApkRelease")
     sh("rm -rf .env")
 
 }
