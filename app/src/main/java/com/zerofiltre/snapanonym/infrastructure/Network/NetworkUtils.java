@@ -33,14 +33,14 @@ public class NetworkUtils {
     private static final String LOG_TAG = NetworkUtils.class.getSimpleName();
 
     // Base URL for snaps API.
-    private static final String SNAP_BASE_URL = "http://34.205.157.14:9010/public/snaps";
+    private static final String SNAP_BASE_URL = "http://35.174.133.79:8010/public/snaps";
     //private static final String SNAP_BASE_URL = "http://192.168.43.246:9000/snaps";
     // Parameter for coordinate longitude.
     private static final String LONGITUDE = "longitude";
     // Parameter for coordinate latitude.
     private static final String LATITUDE = "latitude";
     // Parameter for distance.
-    private static final String DISTANCE = "distance";
+    private static final String DISTANCE = "distanceAsMiles";
     private static final String PICTURE = "picture";
     private static final String CONTENT_TYPE = "Content-Type";
     private final ConnectivityManager mConnectivityManager;
