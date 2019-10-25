@@ -15,6 +15,7 @@ keystoreProperties.load(new FileInputStream(keystorePropertiesFile))
 android {
     signingConfigs {
         release {
+
             keyAlias keystoreProperties['keyAlias']
             keyPassword keystoreProperties['keyPassword']
             storeFile file(keystoreProperties['storeFile'])
@@ -40,7 +41,9 @@ android {
     }
 }
 play {
+    track = "beta"
     serviceAccountCredentials = file("/keystore/google-play-api-key.json")
+    resolutionStrategy = "auto"
 }
 
 dependencies {
